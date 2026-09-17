@@ -9,7 +9,7 @@ pub use constants::*;
 pub use instructions::*;
 pub use state::*;
 
-declare_id!("6KoUjko5kqLHaF31gdWGBihf8Pw8dUNte2hBpBEJveVe");
+declare_id!("3XeDbxKNzTjn7tCFUdbp63UJVk5FoBq25Hv4gHcd8AXf");
 
 #[program]
 pub mod amm_video {
@@ -34,5 +34,21 @@ pub mod amm_video {
 
     pub fn swap(ctx: Context<Swap>, is_x: bool, amount_in: u64, min_amount_out: u64) -> Result<()> {
         ctx.accounts.swap(is_x, amount_in, min_amount_out)
+    }
+
+    pub fn withdraw_fees(
+        ctx: Context<WithdrawFees>,
+        amount_x: u64,
+        amount_y: u64,
+    ) -> Result<()> {
+        ctx.accounts.withdraw_fees(amount_x, amount_y)
+    }
+
+    pub fn lock(ctx: Context<LockPool>) -> Result<()> {
+        ctx.accounts.lock()
+    }
+
+    pub fn unlock(ctx: Context<LockPool>) -> Result<()> {
+        ctx.accounts.unlock()
     }
 }
